@@ -4,12 +4,16 @@ CORRECTED DATA STRUCTURE:
 ✅ Mentee: main_interest + additional_interest (both with levels)
 ✅ Aspirations matched separately with mentor work/experience
 ✅ Final score = 80% skill + 20% aspiration
+✅ Reciprocal Top 5: mentee-centric + mentor-centric views
+✅ Rich matched dataset for personalized email generation
 """
 import sys
 import time
 from pathlib import Path
 
+
 sys.path.insert(0, str(Path(__file__).parent))
+
 
 def check_prerequisites():
     """Check input files"""
@@ -30,6 +34,7 @@ def check_prerequisites():
     print("✅ Input files found")
     return True
 
+
 def run_pipeline():
     """Execute complete pipeline"""
     start = time.time()
@@ -43,8 +48,12 @@ def run_pipeline():
     print("   ✅ Aspirations: future goals ↔ mentor work/experience")
     print("   ✅ Final score: 80% skill + 20% aspiration")
     print()
+    print("   🆕 NEW IN THIS VERSION:")
+    print("   ✅ Reciprocal Top 5: mentee-centric + mentor-centric views")
+    print("   ✅ Rich matched dataset: full profiles for email generation")
+    print()
     print("   📊 ENTITY STRUCTURE:")
-    print("   • Skills: 2×2 = 4 entity matches per person pair")
+    print("   • Skills:      2×2 = 4 entity matches per person pair")
     print("   • Aspirations: 1×1 = 1 aspiration match per person pair")
     print("🚀" + "="*78 + "🚀\n")
     
@@ -52,12 +61,12 @@ def run_pipeline():
         return False
     
     stages = [
-        ('preprocessor', '📊 Preprocessing'),
-        ('embedder', '🔮 Embeddings'),
-        ('similarity_engine', '⚡ Similarity'),
-        ('matching_algorithm', '🎯 Matching'),
-        ('database_engine', '🗄️  Database'),
-        ('excel_engine', '📊 Excel')
+        ('preprocessor',       '📊 Preprocessing'),
+        ('embedder',           '🔮 Embeddings'),
+        ('similarity_engine',  '⚡ Similarity'),
+        ('matching_algorithm', '🎯 Matching + Reciprocal + Rich Dataset'),
+        ('database_engine',    '🗄️  Database'),
+        ('excel_engine',       '📊 Excel Dashboard'),
     ]
     
     success = 0
@@ -96,24 +105,37 @@ def run_pipeline():
     
     if success >= 4:
         print("\n📁 OUTPUT FILES (./output/):")
-        print("   🏆 🏆_MENTORSHIP_DASHBOARD_v6.xlsx ← MAIN RESULT")
-        print("   ✅ final_assignments.csv")
-        print("   🎯 top_n_recommendations.csv")
+        print("   🏆 🏆_MENTORSHIP_DASHBOARD_v6.xlsx   ← MAIN RESULT")
+        print("      └─ ✅_FINAL_ASSIGNMENTS")
+        print("      └─ 🎓_TOP5_PER_MENTEE             ← mentee-centric top 5")
+        print("      └─ 👨‍🏫_TOP5_PER_MENTOR             ← mentor-centric top 5 (reciprocal)")
+        print("      └─ 📧_EMAIL_DATA                  ← full profiles for emails")
+        print("      └─ 📊_CAPACITY_STATUS")
+        print("      └─ 🔬_BEST_100_MATCHES")
+        print("      └─ 📋_SUMMARY")
+        print()
+        print("   📄 final_assignments.csv")
+        print("   📄 top5_per_mentee.csv               ← mentee-centric top 5")
+        print("   📄 top5_per_mentor.csv               ← mentor-centric top 5")
+        print("   📄 rich_matched_dataset.csv          ← USE THIS FOR EMAILS")
         print("   🗄️  mentorship_matches_v6.db")
         print("   📋 mentorship_queries_v6.sql")
         
         print("\n🔥 QUICK START:")
         print("   1. Open 🏆_MENTORSHIP_DASHBOARD_v6.xlsx")
-        print("   2. Sheet 1 = Final assignments")
-        print("   3. Check 'final_similarity_score' column")
-        print("   4. NEW: Sheet 5 = Aspiration analysis")
+        print("   2. ✅_FINAL_ASSIGNMENTS  → confirmed 1-to-1 matches")
+        print("   3. 🎓_TOP5_PER_MENTEE   → each mentee's best 5 mentors")
+        print("   4. 👨‍🏫_TOP5_PER_MENTOR   → each mentor's best 5 mentees")
+        print("   5. 📧_EMAIL_DATA        → all info needed to write emails")
         
         print("\n📊 SCORING BREAKDOWN:")
-        print("   • final_similarity_score = 0.80 × skill_score + 0.20 × aspiration_score")
-        print("   • skill_score = (semantic^1.2 × expertise_multiplier) + stream_bonus")
-        print("   • aspiration_score = semantic similarity (aspirations ↔ work/experience)")
+        print("   • final_score   = 0.80 × skill_score + 0.20 × aspiration_score")
+        print("   • skill_score   = (semantic^1.2 × expertise_multiplier) + stream_bonus")
+        print("   • aspiration    = cosine(mentee_aspiration ↔ mentor work/experience)")
+        print("   • match_quality : Excellent(≥0.75) | Good(≥0.55) | Fair(≥0.40) | Weak")
     
     return success == len(stages)
+
 
 if __name__ == "__main__":
     import os
