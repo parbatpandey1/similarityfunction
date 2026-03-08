@@ -20,7 +20,7 @@ preprocessing_summary.csv
 # Processed data (pickles)
 mentors_processed.pkl
 mentees_processed.pkl
-
+*.pyc 
 # Embeddings (large numpy arrays)
 *.npy
 mentee_embeddings.npy
